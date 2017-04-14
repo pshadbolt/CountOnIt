@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar.LayoutParams;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ public class SummaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_summary);
 
         metcon = (MetCon) getIntent().getSerializableExtra("metcon");
@@ -34,12 +37,12 @@ public class SummaryActivity extends AppCompatActivity {
             row.addView(round);
 
             TextView start = new TextView(this);
-            start.setText(metcon.getStart(i));
+            start.setText(metcon.getLapStart(i));
             start.setGravity(Gravity.CENTER);
             row.addView(start);
 
             TextView duration = new TextView(this);
-            duration.setText(metcon.getDuration(i));
+            duration.setText(metcon.getLapDuration(i));
             duration.setGravity(Gravity.CENTER);
             row.addView(duration);
 

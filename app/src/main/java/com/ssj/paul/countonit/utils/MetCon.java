@@ -1,7 +1,5 @@
 package com.ssj.paul.countonit.utils;
 
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -18,35 +16,29 @@ public class MetCon implements Serializable {
     public ArrayList<Integer> lapStart;
     public ArrayList<Integer> lapDuration;
 
-    private void initialize(){
+    public MetCon() {
         lapStart = new ArrayList<>();
         lapDuration = new ArrayList<>();
         lapStart.add(Integer.valueOf(0));
     }
 
-    public MetCon(long duration){
-        initialize();
-        this.duration = duration;
+    public String getDuration() {
+        return formatTime(Integer.valueOf((int) (duration + 500) / 1000 * 1000));
     }
 
-    public MetCon(int reps){
-        initialize();
-        this.reps = reps;
-    }
-
-    public String getStart(int index){
-        return formatTime(lapStart.get(index));
-    }
-
-    public String getDuration(int index){
-        return formatTime(lapDuration.get(index));
-    }
-
-    public int getReps(){
+    public int getReps() {
         return reps;
     }
 
-    public String tallyRep(long longTime){
+    public String getLapStart(int index) {
+        return formatTime(lapStart.get(index));
+    }
+
+    public String getLapDuration(int index) {
+        return formatTime(lapDuration.get(index));
+    }
+
+    public String tallyRep(long longTime) {
         String response;
 
         Integer lapStartTime = Integer.valueOf((int) (longTime + 500) / 1000 * 1000);
@@ -54,8 +46,7 @@ public class MetCon implements Serializable {
 
         if (lapStart.size() == 1) {
             response = "Round time: " + formatTime(lapDurationTime);
-        }
-        else {
+        } else {
             Integer prevTime = lapStart.get(lapStart.size() - 1) - lapStart.get(lapStart.size() - 2);
             Integer delta = lapDurationTime - prevTime;
 
@@ -73,15 +64,10 @@ public class MetCon implements Serializable {
         return response;
     }
 
-    public void complete(long duration){
+    public void complete(long duration, int reps) {
         this.duration = duration;
-    }
-
-    public void complete(int reps){
         this.reps = reps;
     }
-
-
 
     private String formatTime(Integer input) {
         return String.format("%2d:%02d",

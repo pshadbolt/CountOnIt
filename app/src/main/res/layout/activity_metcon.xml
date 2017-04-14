@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     android:keepScreenOn="true"
     android:visibility="visible"
     tools:context="com.ssj.paul.countonit.ui.MetConActivity">
@@ -27,25 +26,32 @@
                 android:textAlignment="center"
                 android:textSize="135sp" />
 
-            <Button
-                android:id="@+id/startstop"
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/chronometer"
-                android:onClick="trigger"
-                android:text="START"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:layout_below="@+id/chronometer">
 
-            <Button
-                android:id="@+id/set"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/chronometer"
-                android:onClick="setTimer"
-                android:text="SET"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                <Button
+                    android:id="@+id/startstop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_weight="0.5"
+                    android:onClick="trigger"
+                    android:text="START"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <Button
+                    android:id="@+id/set"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="0.5"
+                    android:onClick="setTimer"
+                    android:text="SET"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            </LinearLayout>
 
             <!--Button
                 android:id="@+id/reset"
